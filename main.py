@@ -16,7 +16,7 @@ elapsed_time = 0
 exercise_count = 0
 correct_exercise_count = 0
 total_points = 0
-exercise = ["situps", "pullups", "squats", "jumping jacks"]
+exercise = ["situps", "pullups", "jumping jacks"]
 new_exercise = "situps"
 while cap.isOpened()==True:
     ret, frame = cap.read()
@@ -29,22 +29,6 @@ while cap.isOpened()==True:
     if results.pose_landmarks:
         left_shoulder = results.pose_landmarks.landmark[11]
         right_shoulder = results.pose_landmarks.landmark[12]
-
-        left_hip = results.pose_landmarks.landmark[23]
-        right_hip = results.pose_landmarks.landmark[24]
-        left_knee = results.pose_landmarks.landmark[25]
-        right_knee = results.pose_landmarks.landmark[26]
-        left_ankle = results.pose_landmarks.landmark[27]
-        right_ankle = results.pose_landmarks.landmark[28]
-
-        threshold = 0.1 * 0.1
-        # Check if the knees are not too close to the ankles (additional condition)
-        knee_ankle_distance_condition = abs(left_knee.y - left_ankle.y) > threshold and abs(
-            right_knee.y - right_ankle.y) > threshold
-        if knee_ankle_distance_condition == True:
-            squat_condition = True
-        # Final squat condition
-        # final_squat_condition = squat_condition and knee_ankle_distance_condition
 
         sit_up_condition = left_shoulder.y > right_shoulder.y
         pull_up_condition = left_shoulder.y < right_shoulder.y  # Placeholder, customize based on squat pose
@@ -105,7 +89,7 @@ while cap.isOpened()==True:
 
     if elapsed_time >= 20:
         exercise_count += 10
-        new_exercise = exercise[random.randint(0, 3)]
+        new_exercise = exercise[random.randint(0, 2)]
         total_points += correct_exercise_count / exercise_count * 100
         accuracy = correct_exercise_count / exercise_count * 100
         start_time = time.time()

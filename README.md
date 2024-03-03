@@ -1,0 +1,1 @@
+My project uses augmented reality to make exercise more fun, through using computer vision to track body outline, telling the user wheather they got the exercise right or not and awarding points based on these exercises. My app tracks 3 exercises: pullups, situps and jumping jacks. 
